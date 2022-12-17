@@ -1,14 +1,16 @@
 import { Router } from 'express';
-import { Request, Response } from 'express';
+import { UsersController } from './models/users/users.controller';
 
 
 const router = Router();
+const usersController = new UsersController();
 
-router.get('/', (req: Request, res: Response) => {
-    return res.status(200).json({
-        message: 'hello world'
-    });
-})
+//  Users
+router.get('/users', usersController.findAll);
+router.get('/users/:id', usersController.findOne);
+router.post('/users', usersController.create);
+router.patch('/users/:id', usersController.update);
+router.delete('/users/:id', usersController.remove);
 
 
 export { router };
