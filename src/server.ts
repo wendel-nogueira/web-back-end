@@ -5,7 +5,9 @@ import { router } from './routes';
 import cors from 'cors';
 import 'dotenv/config';
 
+
 const app = express();
+const port = process.env.PORT || 80;
 
 app.use(express.json());
 app.use(cors());
@@ -13,8 +15,16 @@ app.use('/', router);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof Error) {
+        let error: any;
+
+        try {
+            error = JSON.parse(err.message);
+        } catch (e) {
+            error = err.message;
+        }
+
         return response.status(400).json({
-            error: err.message
+            error: error
         })
     } else {
         return response.status(500).json({
@@ -23,8 +33,6 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
         })
     }
 });
-
-const port = process.env.PORT;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
