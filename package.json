@@ -3,5 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Wendel Nogueira <43501645+wendel-nogueira@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "runbuild": "npm run build && npm start",
+    "startdev": "ts-node src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --exit-child --watch src src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "prisma": "^4.7.1"
+  }
 }
