@@ -1,0 +1,7 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Wendel Nogueira <43501645+wendel-nogueira@users.noreply.github.com>",
+  "license": "MIT"
+}
