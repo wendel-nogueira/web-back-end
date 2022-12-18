@@ -1,5 +1,6 @@
 import { EnumConsole } from '../enums/console.enum';
 import { EnumGenre } from '../enums/genre.enum';
+import { Review } from '../../reviews/types/review.type';
 
 
 export class Game {
@@ -11,6 +12,7 @@ export class Game {
     console: EnumConsole;
     image: string;
     price: number;
+    reviews: Review[];
     createdAt: Date;
     updatedAt: Date;
     
