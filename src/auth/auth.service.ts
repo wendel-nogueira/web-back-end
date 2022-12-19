@@ -29,7 +29,11 @@ export class AuthService {
 
     async login(user: any) {
         const token = sign(
-            { email: user.email }, 
+            { 
+                name: user.name,
+                username: user.username,
+                email: user.email,
+            }, 
             '0d2ee6d4da46bc6db53473efbf421395', 
             { subject: user.id, expiresIn: "1d"}
         );
