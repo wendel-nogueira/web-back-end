@@ -15,6 +15,7 @@ const authController = new AuthController();
 
 //  Auth
 router.post('/login', authController.login);
+router.get('/me', ensureAuthenticated, authController.me)
 
 //  Users
 router.get('/users', usersController.findAll);
