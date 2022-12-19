@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersValidator } from './users.validator';
 import { ObjectId } from 'mongodb';
+import { hash } from 'bcryptjs';
 
 
 export class UsersService {
@@ -39,6 +40,9 @@ export class UsersService {
         if (usernameExists) {
             throw new Error('Username already exists');
         }
+
+        const hashedPassword = await hash(user.password, 8);
+        user.password = hashedPassword;
 
         return await this.usersRepository.create(user);
     }
