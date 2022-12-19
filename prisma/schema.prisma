@@ -36,6 +36,16 @@ enum Genre {
   simulacao
 }
 
+type Review {
+  id        String
+  title     String
+  review    String
+  rating    Int
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
 model Game {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String   @unique
@@ -46,6 +56,7 @@ model Game {
   image     String
   price     Float
   rating    Float    @default(0)
+  reviews   Review[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
