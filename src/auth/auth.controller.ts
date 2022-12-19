@@ -24,7 +24,6 @@ export class AuthController {
     }
 
     async me(req: Request, res: Response, next: NextFunction) {
-        const authService = new AuthService();
         const { authorization } = req.headers;
 
         if (!authorization) {
@@ -34,7 +33,7 @@ export class AuthController {
         const [, token] = authorization.split(' ');
 
         try {
-            const decoded = await decode(token);
+            const decoded = decode(token);
 
             return res.status(200).json(decoded);
         } catch (error) {
