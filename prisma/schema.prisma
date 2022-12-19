@@ -55,6 +55,7 @@ model Game {
   console   Console
   image     String
   price     Float
+  rating    Float    @default(0)
   reviews   Review[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

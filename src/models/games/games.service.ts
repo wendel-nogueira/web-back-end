@@ -28,6 +28,18 @@ export class GamesService {
         return await this.gamesRepository.findByTitle(title);
     }
 
+    async findByGenre(genre: string) {
+        return await this.gamesRepository.findByGenre(genre);
+    }
+
+    async findByDeveloper(developer: string) {
+        return await this.gamesRepository.findByDeveloper(developer);
+    }
+
+    async findTop(console: string) {
+        return await this.gamesRepository.findTop(console);
+    }
+
     async create(game: CreateGamesDto) {
         const gamesValidator = new GamesValidator();
         await gamesValidator.validateCreateGamesDto(game);

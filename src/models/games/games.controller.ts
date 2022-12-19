@@ -27,6 +27,30 @@ export class GamesController {
 
         return res.status(200).json(game);
     }
+    
+    async findByGenre(req: Request, res: Response) {
+        const gamesService = new GamesService();
+        const { genre } = req.params;
+        const game = await gamesService.findByGenre(genre);
+
+        return res.status(200).json(game);
+    }
+
+    async findByDeveloper(req: Request, res: Response) {
+        const gamesService = new GamesService();
+        const { developer } = req.params;
+        const game = await gamesService.findByDeveloper(developer);
+
+        return res.status(200).json(game);
+    }
+
+    async findTop(req: Request, res: Response) {
+        const gamesService = new GamesService();
+        const { console } = req.params;
+        const game = await gamesService.findTop(console);
+
+        return res.status(200).json(game);
+    }
 
     async create(req: Request, res: Response, next: NextFunction) {
         const gamesService = new GamesService();
