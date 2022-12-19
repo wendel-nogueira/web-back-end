@@ -28,7 +28,41 @@ export class GamesRepository implements IGamesRepository {
         return this.prisma.game.findUnique({
             where: {
                 title: title
+            },
+        });
+    }
+
+    async findByGenre(genre: string): Promise<any> {
+        return this.prisma.game.findMany({
+            where: {
+                genre: genre
+            },
+            orderBy: {
+                rating: 'desc'
             }
+        });
+    }
+
+    async findByDeveloper(developer: string): Promise<any> {
+        return this.prisma.game.findMany({
+            where: {
+                developer: developer
+            },
+            orderBy: {
+                rating: 'desc'
+            }
+        });
+    }
+
+    async findTop(console: string): Promise<any> {
+        return this.prisma.game.findMany({
+            where: {
+                console: console
+            },
+            orderBy: {
+                rating: 'desc'
+            },
+            take: 10
         });
     }
 
