@@ -67,8 +67,13 @@ export class GamesRepository implements IGamesRepository {
     }
 
     async create(createGameDto: CreateGamesDto): Promise<Game> {
+        const newGame = {
+            ...createGameDto,
+            reviews: []
+        }
+
         const game = await this.prisma.game.create({
-            data: createGameDto
+            data: newGame
         });
         
         return game;

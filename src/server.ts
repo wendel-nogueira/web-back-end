@@ -9,6 +9,8 @@ import 'dotenv/config';
 const app = express();
 const port = process.env.PORT || 80;
 
+// change the limit to whatever you want
+app.use(express.json({ limit: '50mb' }));
 app.use(express.json());
 app.use(cors());
 app.use('/', router);

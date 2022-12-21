@@ -53,21 +53,27 @@ export class ReviewsRepository implements IReviewsRepository {
             review: createReviewDto.review,
             rating: createReviewDto.rating,
             userId: createReviewDto.userId,
-            createdAt: new Date(),
             updatedAt: new Date()
         }
+
+        const gameInfo = await this.prisma.game.findUnique({
+            where: {
+                id: gameId
+            },
+        });
+
+        const gameReviewsQuantity = gameInfo.reviews ? gameInfo.reviews.length : 0;
+        const newGameRating = (gameInfo.rating * gameReviewsQuantity + newReview.rating) / (gameReviewsQuantity + 1);
 
         const review = await this.prisma.game.update({
             where: {
                 id: gameId
             },
             data: {
+                rating: newGameRating,
                 reviews: {
                     push: newReview
                 }
-            },
-            include: {
-                reviews: true
             }
         });
 
