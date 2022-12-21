@@ -53,6 +53,7 @@ export class ReviewsRepository implements IReviewsRepository {
             review: createReviewDto.review,
             rating: createReviewDto.rating,
             userId: createReviewDto.userId,
+            createdAt: new Date(),
             updatedAt: new Date()
         }
 
